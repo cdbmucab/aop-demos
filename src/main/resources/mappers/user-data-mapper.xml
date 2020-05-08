@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cdbm.ucab.aopdemos.repository.UserDataMapper">
+
+	<resultMap id="UserDataResultMap" autoMapping="true" type="cdbm.ucab.aopdemos.data.UserData">
+		<id property="id" column="usr_id"/>
+		<result property="email" column="usr_email"/>
+		<result property="firstName" column="usr_first_name"/>
+		<result property="lastName" column="usr_last_name"/>
+		<result property="language" column="usr_lang_code"/>
+		<result property="allowEmailMarketing" column="usr_allow_email_marketing"/>
+		<result property="dateCreated" column="usr_date_created"/>
+		<result property="lastUpdated" column="usr_last_updated"/>
+	</resultMap>
+
+	<select id="getById" resultMap="UserDataResultMap">
+		SELECT u.id                    as usr_id,
+			   u.email	               as usr_email,
+			   u.first_name            as usr_first_name,
+			   u.last_name             as usr_last_name,
+			   u.allow_email_marketing as usr_allow_email_marketing,
+			   u.date_created          as usr_date_created,
+			   u.last_updated          as usr_last_updated
+		FROM "user" u
+		WHERE u.id = #{id}
+	</select>
+
+	<select id="getUpToDateUserData" resultMap="UserDataResultMap">
+		SELECT u.id                     as usr_id,
+			   u.email	                as usr_email,
+			   u.first_name             as usr_first_name,
+			   u.last_name              as usr_last_name,
+			   u.allow_email_marketing  as usr_allow_email_marketing,
+			   u.date_created           as usr_date_created,
+			   u.campos                 as usr_last_updated
+		FROM "user" u
+		WHERE (
+			u.date_created <![CDATA[ >= (CURRENT_DATE - (INTERVAL '1 HOUR' * #{param1})) ]]> OR
+			u.last_updated  <![CDATA[ >= (CURRENT_DATE - (INTERVAL '1 HOUR' * #{param1})) ]]>
+		)
+	</select>
+</mapper>

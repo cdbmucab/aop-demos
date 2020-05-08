@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+	id 'groovy'
+}
+
+group = 'cdbm.ucab.aopdbsanitizer'
+version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.postgresql:postgresql:42.1.4'
+	implementation 'org.codehaus.groovy:groovy-all:2.5.7'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.6.RELEASE'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.1.6.RELEASE'
+}
+
+springBoot {
+	buildInfo()
+}
+
+task copyJar(type: Copy) {
+	from jar {
+		include '*.jar'
+	}
+	into buildDir
+	rename { String fileName ->
+		"aop-db-sanitizer.jar"
+	}
+}
+
+bootJar.finalizedBy copyJar
