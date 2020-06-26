@@ -28,6 +28,10 @@ class UserService {
 	}
 
 	UserData pushUserById(Long userId) {
+		if (!userId || userId < 0) {
+			throw new IllegalArgumentException("User id must be a valid value")
+		}
+
 		UserData userData = userDataMapper.getById(userId)
 		log.info("Fetched [${userData}]")
 		return userData

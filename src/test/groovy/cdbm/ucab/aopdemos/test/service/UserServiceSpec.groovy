@@ -25,4 +25,18 @@ class UserServiceSpec extends Specification {
         userData                                || expectedEmail
         new UserData(email: "some@gmail.com")   || "some@gmail.com"
     }
+
+    def "test pushUserById with invalid argument"() {
+        when:
+        userService.pushUserById(userId)
+
+        then:
+        Throwable exception = thrown()
+        exception.class == expectedException
+
+        where:
+        userId      || expectedException
+        null        || IllegalArgumentException.class
+        -1          || IllegalArgumentException.class
+    }
 }

@@ -2,7 +2,7 @@ package cdbm.ucab.aopdemos.test.repository
 
 import cdbm.ucab.aopdemos.data.UserData
 import cdbm.ucab.aopdemos.repository.UserDataMapper
-import org.junit.Assert
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,6 +29,6 @@ class UserDataMapperV2Test {
         UserData userData = userDataMapper.getById(2L)
 
         // Verification
-        Assert.assertEquals(userData.email, "test@testcontainer.com")
+        Assertions.assertEquals(userData.email, "test@testcontainer.com")
     }
 }
