@@ -31,7 +31,7 @@ class DatabaseSanitizerAspect {
 		userDataFields.email = sanitizeEmail(userDataFields.email)
 	}
 
-	@AfterReturning(value = "execution(* cdbm.ucab.aopdbsanitizer.repository..*.*(..))", returning = "result")
+	@AfterReturning(value = "execution(* cdbm.ucab.aopdemos.repository..*.*(..))", returning = "result")
 	void sanitizeEventData(JoinPoint joinPoint, Object result) {
 		if (properties.sanitizeData) {
 			if (result instanceof UserData) {
