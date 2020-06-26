@@ -1,6 +1,6 @@
 package cdbm.ucab.aopdemos.repository
 
-import cdbm.ucab.aopdbsanitizer.data.UserData
+import cdbm.ucab.aopdemos.data.UserData
 import groovy.transform.CompileStatic
 import org.apache.ibatis.annotations.Mapper
 

@@ -2,6 +2,7 @@ package cdbm.ucab.aopdemos.aop
 
 import groovy.transform.CompileStatic
 import org.aspectj.lang.ProceedingJoinPoint
+import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -15,7 +16,7 @@ class ServiceExceptionLoggerAspect {
 
 	private Logger log = LoggerFactory.getLogger(ServiceExceptionLoggerAspect.class)
 
-//	@Around(value = "execution(* cdbm.ucab.aopdbsanitizer.service..*.*(..))")
+	@Around(value = "execution(* cdbm.ucab.aopdemos.service..*.*(..))")
 	Object logApiErrors(ProceedingJoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName()
 		String className = joinPoint.getTarget().getClass().getSimpleName()

@@ -1,7 +1,7 @@
 package cdbm.ucab.aopdemos.aop
 
-import cdbm.ucab.aopdbsanitizer.config.AopDbSanitizerConfigurationProperties
-import cdbm.ucab.aopdbsanitizer.data.UserData
+import cdbm.ucab.aopdemos.config.AopDbSanitizerConfigurationProperties
+import cdbm.ucab.aopdemos.data.UserData
 import groovy.transform.CompileStatic
 import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.AfterReturning

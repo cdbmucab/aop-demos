@@ -1,7 +1,7 @@
 package cdbm.ucab.aopdemos.controller
 
-import cdbm.ucab.aopdbsanitizer.data.UserData
-import cdbm.ucab.aopdbsanitizer.service.UserService
+import cdbm.ucab.aopdemos.data.UserData
+import cdbm.ucab.aopdemos.service.UserService
 import groovy.transform.CompileStatic
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
