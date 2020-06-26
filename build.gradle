@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.1.6.RELEASE'
 	id 'java'
 	id 'groovy'
+	id 'jacoco'
 }
 
 group = 'cdbm.ucab.aopdbsanitizer'
@@ -39,6 +40,23 @@ task copyJar(type: Copy) {
 	into buildDir
 	rename { String fileName ->
 		"aop-db-sanitizer.jar"
+	}
+}
+
+jacoco {
+	toolVersion = "0.8.5"
+	reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+test {
+	finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+	dependsOn test
+	reports {
+		xml.enabled false
+		csv.enabled false
+		html.destination file("${buildDir}/jacocoHtml")
 	}
 }
 
