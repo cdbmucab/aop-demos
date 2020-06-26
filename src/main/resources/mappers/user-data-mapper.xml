@@ -33,7 +33,7 @@
 			   u.last_name              as usr_last_name,
 			   u.allow_email_marketing  as usr_allow_email_marketing,
 			   u.date_created           as usr_date_created,
-			   u.campos                 as usr_last_updated
+			   u.last_updated           as usr_last_updated
 		FROM "user" u
 		WHERE (
 			u.date_created <![CDATA[ >= (CURRENT_DATE - (INTERVAL '1 HOUR' * #{param1})) ]]> OR
